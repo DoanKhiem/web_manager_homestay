@@ -14,59 +14,80 @@
         <div class="col-md-12">
             <div class="card-box">
                 <div class="card-head">
-                    <button id = "panel-button" 
-                        class = "mdl-button mdl-js-button mdl-button--icon pull-right" 
-                        data-upgraded = ",MaterialButton">
-                        <i class = "material-icons">more_vert</i>
-                    </button>
-                    <ul class = "mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                        data-mdl-for = "panel-button">
-                        <li class = "mdl-menu__item"><i class="material-icons">assistant_photo</i>Action</li>
-                        <li class = "mdl-menu__item"><i class="material-icons">print</i>Another action</li>
-                        <li class = "mdl-menu__item"><i class="material-icons">favorite</i>Something else here</li>
-                    </ul>
+                    <header>All Bookings</header>
                 </div>
+                
                 <div class="card-body ">
+                    <div class="row p-b-20">
+                        <div class="col-md-6 col-sm-6 col-6">
+                            <div class="btn-group">
+                                <a href="new_booking.html" id="addRow" class="btn btn-info">
+                                    Add New <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6">
+                            <div class="btn-group pull-right">
+                                <a class="btn deepPink-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="fa fa-print"></i> Print </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="table-scrollable">
-                    <table class="table table-hover table-checkable order-column full-width" id="example4">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th class="center"> Họ tên </th>
-                                <th class="center"> Giới tính </th>
-                                <th class="center"> Số điện thoại </th>
-                                <th class="center"> Email </th>
-                                <th class="center"> Địa chỉ </th>
-                                <th class="center">Ngày sinh</th>
-                                <th class="center"> Action </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="odd gradeX">
-                                <td class="user-circle-img sorting_1">
-                                    <img src="{{ url('admin') }}/assets/img/user/user1.jpg" alt="">
-                                </td>
-                                <td class="center">Rajesh</td>
-                                <td class="center">Chef</td>
-                                <td class="center"><a href="tel:4444565756">
-                                        4444565756 </a></td>
-                                <td class="center"><a href="mailto:shuxer@gmail.com">
-                                        rajesh@gmail.com </a></td>
-                                <td class="center">22,tilak appt. surat</td>
-                                <td class="center">22 Feb 2000</td>
-                                <td class="center">
-                                    <a href="edit_staff.html" class="btn btn-tbl-edit btn-xs">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a class="btn btn-tbl-delete btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </a>
-                                </td>
+                        <table class="table table-hover table-checkable order-column full-width" id="example4">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="center"> Họ tên </th>
+                                    <th class="center"> Giới tính </th>
+                                    <th class="center"> Số điện thoại </th>
+                                    <th class="center"> Email </th>
+                                    <th class="center"> Địa chỉ </th>
+                                    <th class="center">Ngày sinh</th>
+                                    <th class="center"> Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX">
+                                    <td class="user-circle-img sorting_1">
+                                        <img src="{{ url('admin') }}/assets/img/user/user1.jpg" alt="">
+                                    </td>
+                                    <td class="center">Rajesh</td>
+                                    <td class="center">Chef</td>
+                                    <td class="center"><a href="tel:4444565756">
+                                            4444565756 </a></td>
+                                    <td class="center"><a href="mailto:shuxer@gmail.com">
+                                            rajesh@gmail.com </a></td>
+                                    <td class="center">22,tilak appt. surat</td>
+                                    <td class="center">22 Feb 2000</td>
+                                    <td class="center">
+                                        <a href="edit_staff.html" class="btn btn-tbl-edit btn-xs">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a class="btn btn-tbl-delete btn-xs">
+                                            <i class="fa fa-trash-o "></i>
+                                        </a>
+                                    </td>
+                                    
+                                </tr>
                                 
-                            </tr>
-                            
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -95,7 +116,7 @@
                                 </p>
                             </div>
                             <div class="profile-userbuttons">
-                                <a href="staff_profile.html" class="btn btn-circle deepPink-bgcolor btn-sm">Xem thêm.</a>
+                                <a href="staff_profile.html" class="btn btn-circle deepPink-bgcolor btn-sm">Xem thêm</a>
                             </div>
                         </div>
                     </div>

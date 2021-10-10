@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::get('/nhanvien', function () {
     return view('admin.list.nhanvien');
 });
+Route::get('/add-nhanvien', function () {
+    return view('admin.add.nhanvien');
+});
 Route::get('/hopdonglaodong', function () {
     return view('admin.list.hopdonglaodong');
 });
