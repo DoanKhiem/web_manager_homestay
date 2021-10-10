@@ -19,4 +19,7 @@ Route::get('/', function () {
 Route::get('/phongban', function () {
     return view('admin.list.phongban');
 });
+Route::get('/hopdonglaodong', function () {
+    return view('admin.list.hopdonglaodong');
+});
 // Route::get()
