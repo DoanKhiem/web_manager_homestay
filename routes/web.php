@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.index');
 });
-Route::get('/phongban', function () {
-    return view('admin.list.phongban');
+Route::get('/nhanvien', function () {
+    return view('admin.list.nhanvien');
 });
 Route::get('/hopdonglaodong', function () {
     return view('admin.list.hopdonglaodong');
