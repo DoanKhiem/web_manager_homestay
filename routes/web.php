@@ -27,7 +27,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // category
     Route::resource('category', \App\Http\Controllers\Category::class);
+
+    // booking
+    Route::resource('booking', \App\Http\Controllers\Booking::class);
+
+    // menu
+    Route::resource('menu', \App\Http\Controllers\Menu::class);
+
+    // room
+    Route::resource('room', \App\Http\Controllers\Room::class);
 });
 
 require __DIR__.'/auth.php';

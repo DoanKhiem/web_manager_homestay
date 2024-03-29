@@ -11,7 +11,7 @@ class Booking extends Controller
      */
     public function index()
     {
-        //
+        return view('booking.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class Booking extends Controller
      */
     public function create()
     {
-        //
+        return view('booking.create');
     }
 
     /**
