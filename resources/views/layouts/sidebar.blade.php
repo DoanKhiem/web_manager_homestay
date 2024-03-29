@@ -36,7 +36,7 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="form-basic.html" class="sidebar-link">
+                            <a href="{{route('category.index')}}" class="sidebar-link">
                                 <i class="mdi mdi-plus-box"></i>
                                 <span class="hide-menu"> Form Basic</span>
                             </a>
@@ -57,13 +57,13 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="form-basic.html" class="sidebar-link">
+                            <a href="{{route('room.index')}}" class="sidebar-link">
                                 <i class="mdi mdi-format-list-bulleted"></i>
                                 <span class="hide-menu"> Danh sách phòng</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="form-wizard.html" class="sidebar-link">
+                            <a href="{{route('room.create')}}" class="sidebar-link">
                                 <i class="mdi mdi-plus-box"></i>
                                 <span class="hide-menu"> Thêm phòng</span>
                             </a>
@@ -99,13 +99,13 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="form-basic.html" class="sidebar-link">
+                            <a href="{{route('menu.index')}}" class="sidebar-link">
                                 <i class="mdi mdi-format-list-bulleted"></i>
                                 <span class="hide-menu"> Danh sách menu</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="form-wizard.html" class="sidebar-link">
+                            <a href="{{route('menu.create')}}" class="sidebar-link">
                                 <i class="mdi mdi-plus-box"></i>
                                 <span class="hide-menu">Thêm menu</span>
                             </a>
