@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
 
     // booking
     Route::resource('booking', \App\Http\Controllers\Booking::class);
+
+    // menu
+    Route::resource('menu', \App\Http\Controllers\Menu::class);
 });
 
 require __DIR__.'/auth.php';
