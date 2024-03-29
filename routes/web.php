@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
 
     // menu
     Route::resource('menu', \App\Http\Controllers\Menu::class);
+
+    // room
+    Route::resource('room', \App\Http\Controllers\Room::class);
 });
 
 require __DIR__.'/auth.php';
