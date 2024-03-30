@@ -11,7 +11,8 @@ class Utility extends Controller
      */
     public function index()
     {
-        return view('utility.index');
+        $datas = \App\Models\Utility::orderBy('created_at', 'desc')->get();
+        return view('utility.index', compact('datas'));
     }
 
     /**
