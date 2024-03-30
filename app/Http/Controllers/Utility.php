@@ -27,7 +27,17 @@ class Utility extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'string|nullable',
+        ]);
+        $data = $request->all();
+        $status = \App\Models\Utility::create($data);
+        if ($status) {
+            return redirect()->route('utility.index')->with('success', 'Thêm mới tiện ích thành công');
+        } else {
+            return back()->with('error', 'Lỗi thêm mới tiện ích');
+        }
     }
 
     /**
