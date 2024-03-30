@@ -51,6 +51,27 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+                       aria-expanded="false">
+                        <i class="mdi mdi-trophy-outline"></i>
+                        <span class="hide-menu">Tiện ích</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        <li class="sidebar-item">
+                            <a href="{{route('utility.index')}}" class="sidebar-link">
+                                <i class="mdi mdi-format-list-bulleted"></i>
+                                <span class="hide-menu"> Danh sách tiện ích</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('utility.create')}}" class="sidebar-link">
+                                <i class="mdi mdi-plus-box"></i>
+                                <span class="hide-menu"> Thêm tiện ích</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                         aria-expanded="false">
                         <i class="mdi mdi-hotel"></i>
                         <span class="hide-menu">Phòng</span>

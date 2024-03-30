@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function () {
 
     // room
     Route::resource('room', \App\Http\Controllers\Room::class);
+
+    // utility
+    Route::resource('utility', \App\Http\Controllers\Utility::class);
 });
 
 require __DIR__.'/auth.php';
