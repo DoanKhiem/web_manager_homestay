@@ -11,7 +11,7 @@ class Utility extends Controller
      */
     public function index()
     {
-        //
+        return view('utility.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class Utility extends Controller
      */
     public function create()
     {
-        //
+        return view('utility.create');
     }
 
     /**
