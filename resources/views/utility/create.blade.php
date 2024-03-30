@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Thêm mới tiện ích</title>
     @include('layouts.head')
 
 </head>
@@ -51,13 +51,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Form Basic</h4>
+                        <h4 class="page-title">Thêm tiện ích</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Library
+                                        Thêm tiện ích
                                     </li>
                                 </ol>
                             </nav>
@@ -78,54 +78,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="{{route('utility.store')}}" method="POST">
+                                @csrf
                                 <div class="card-body">
-                                    <h4 class="card-title">Personal Info</h4>
+                                    <h4 class="card-title">Thông tin tiện tích</h4>
                                     <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">First
-                                            Name</label>
+                                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Tên tiện tích</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="fname"
-                                                placeholder="First Name Here" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Last
-                                            Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="lname"
-                                                placeholder="Last Name Here" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lname"
-                                            class="col-sm-3 text-end control-label col-form-label">Password</label>
-                                        <div class="col-sm-9">
-                                            <input type="password" class="form-control" id="lname"
-                                                placeholder="Password Here" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="email1"
-                                            class="col-sm-3 text-end control-label col-form-label">Company</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="email1"
-                                                placeholder="Company Name Here" />
+                                            <input name="name" value="{{old('name')}}" type="text" class="form-control" id="fname"
+                                                placeholder="Nhập tên tiện ích" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1"
-                                            class="col-sm-3 text-end control-label col-form-label">Contact No</label>
+                                            class="col-sm-3 text-end control-label col-form-label">Mô tả</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="cono1"
-                                                placeholder="Contact No Here" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1"
-                                            class="col-sm-3 text-end control-label col-form-label">Message</label>
-                                        <div class="col-sm-9">
-                                            <textarea class="form-control"></textarea>
+                                            <textarea name="description" class="form-control">{{old('description')}}</textarea>
                                         </div>
                                     </div>
                                 </div>
