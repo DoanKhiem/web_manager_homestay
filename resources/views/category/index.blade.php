@@ -77,6 +77,7 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
+                        @include('layouts.notification')
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Basic Datatable</h5>

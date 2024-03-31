@@ -19,7 +19,8 @@ class Category extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $utilities = \App\Models\Utility::orderBy('created_at', 'desc')->get();
+        return view('category.create', compact('utilities'));
     }
 
     /**
@@ -27,7 +28,25 @@ class Category extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:categories',
+            'utility_id' => 'required',
+            'first_block' => 'required',
+            'first_block_price' => 'required',
+            'next_hour_price' => 'required',
+            'daily_price' => 'required',
+            'weekend_surcharge' => 'required',
+            'holiday_surcharge' => 'required',
+            'early_checkin' => 'required',
+            'late_checkout' => 'required',
+        ]);
+        $data = $request->all();
+        $status = \App\Models\Category::create($data);
+        if ($status) {
+            return redirect()->route('category.index')->with('success', 'Thêm mới loại phòng thành công');
+        } else {
+            return back()->with('error', 'Lỗi thêm mới loại phòng');
+        }
     }
 
     /**
