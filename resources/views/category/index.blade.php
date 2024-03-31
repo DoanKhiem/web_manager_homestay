@@ -105,7 +105,7 @@
                                             <tr>
                                                 <td>{{$loop->index + 1}}</td>
                                                 <td>{{$item->name}}</td>
-                                                <td>{{$item->utility}}</td>
+                                                <td>{{$item->utility->name}}</td>
                                                 <td>{{$item->first_block}}</td>
                                                 <td>{{$item->first_block_price}}</td>
                                                 <td>{{$item->next_hour_price}}</td>
