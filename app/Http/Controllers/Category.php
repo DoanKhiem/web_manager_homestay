@@ -40,6 +40,13 @@ class Category extends Controller
             'early_checkin' => 'required',
             'late_checkout' => 'required',
         ]);
+        $data = $request->all();
+        $status = \App\Models\Category::create($data);
+        if ($status) {
+            return redirect()->route('category.index')->with('success', 'Thêm mới loại phòng thành công');
+        } else {
+            return back()->with('error', 'Lỗi thêm mới loại phòng');
+        }
     }
 
     /**
