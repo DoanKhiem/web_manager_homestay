@@ -11,7 +11,8 @@ class Menu extends Controller
      */
     public function index()
     {
-        return view('menu.index');
+        $datas = \App\Models\Menu::orderBy('created_at', 'desc')->get();
+        return view('menu.index', compact('datas'));
     }
 
     /**
