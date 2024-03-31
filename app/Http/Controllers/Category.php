@@ -11,7 +11,8 @@ class Category extends Controller
      */
     public function index()
     {
-        return view('category.index');
+        $datas = \App\Models\Category::orderBy('created_at', 'desc')->get();
+        return view('category.index', compact('datas'));
     }
 
     /**

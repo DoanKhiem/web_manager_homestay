@@ -22,4 +22,9 @@ class Category extends Model
         'late_checkout',
         'description',
     ];
+
+    public function utility()
+    {
+        return $this->belongsTo(Utility::class);
+    }
 }
