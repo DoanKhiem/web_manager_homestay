@@ -27,7 +27,18 @@ class Menu extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:categories',
+            'quantity' => 'required',
+            'price' => 'required',
+        ]);
+        $data = $request->all();
+        $status = \App\Models\Menu::create($data);
+        if ($status) {
+            return redirect()->route('menu.index')->with('success', 'Thêm mới menu thành công');
+        } else {
+            return back()->with('error', 'Lỗi thêm mới menu');
+        }
     }
 
     /**
