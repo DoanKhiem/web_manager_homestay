@@ -19,7 +19,8 @@ class Category extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $utilities = \App\Models\Utility::orderBy('created_at', 'desc')->get();
+        return view('category.create', compact('utilities'));
     }
 
     /**
