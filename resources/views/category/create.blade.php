@@ -77,6 +77,13 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-md-12">
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                <div class="alert alert-danger" role="alert">
+                                    {{$error}}
+                                </div>
+                            @endforeach
+                        @endif
                         <div class="card">
                             <form class="form-horizontal" action="{{route('category.store')}}" method="POST">
                                 @csrf
@@ -98,7 +105,7 @@
                                                 style="width: 100%; height: 36px">
                                                 <option value="">Select</option>
                                                 @foreach($utilities as $utility)
-                                                <option value="{{$utility->id}}">{{$utility->name}}</option>
+                                                <option {{old('utility_id') == $utility->id ? 'selected' : ''}} value="{{$utility->id}}">{{$utility->name}}</option>
                                                 @endforeach
 
                                             </select>
@@ -180,7 +187,7 @@
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary">
                                             Submit
                                         </button>
                                     </div>

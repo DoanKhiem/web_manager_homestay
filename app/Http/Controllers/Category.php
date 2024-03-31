@@ -28,7 +28,18 @@ class Category extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:categories',
+            'utility_id' => 'required',
+            'first_block' => 'required',
+            'first_block_price' => 'required',
+            'next_hour_price' => 'required',
+            'daily_price' => 'required',
+            'weekend_surcharge' => 'required',
+            'holiday_surcharge' => 'required',
+            'early_checkin' => 'required',
+            'late_checkout' => 'required',
+        ]);
     }
 
     /**
