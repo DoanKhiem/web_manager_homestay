@@ -11,7 +11,8 @@ class Room extends Controller
      */
     public function index()
     {
-        return view('room.index');
+        $datas = \App\Models\Room::orderBy('created_at', 'desc')->get();
+        return view('room.index', compact('datas'));
     }
 
     /**

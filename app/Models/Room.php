@@ -15,4 +15,9 @@ class Room extends Model
         'area',
         'description',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
