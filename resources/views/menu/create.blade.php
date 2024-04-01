@@ -55,9 +55,9 @@
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        thêm menu
+                                        Thêm menu
                                     </li>
                                 </ol>
                             </nav>
@@ -78,12 +78,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         @if($errors->any())
-                            @foreach($errors->all() as $error)
-                                <div class="alert alert-danger" role="alert">
-                                    {{$error}}
-                                </div>
+                        @foreach($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                            {{$error}}
+                        </div>
 
-                            @endforeach
+                        @endforeach
                         @endif
                         <div class="card">
                             <form class="form-horizontal" action="{{route('menu.store')}}" method="POST">
@@ -91,33 +91,36 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Thông tin menu</h4>
                                     <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Tên sản phẩm</label>
+                                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Tên
+                                            sản phẩm</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control" id="fname"
-                                                placeholder="Nhập tên sản phẩm" />
+                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
+                                                id="fname" placeholder="Nhập tên sản phẩm" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Giá bán</label>
+                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Giá
+                                            bán</label>
                                         <div class="col-sm-9">
-                                            <input name="price" value="{{old('price')}}" type="number" class="form-control" id="lname"
-                                                placeholder="Nhập giá bán" />
+                                            <input name="price" value="{{old('price')}}" type="number"
+                                                class="form-control" id="lname" placeholder="Nhập giá bán" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lname"
-                                            class="col-sm-3 text-end control-label col-form-label">Số lượng hiện có</label>
+                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Số
+                                            lượng hiện có</label>
                                         <div class="col-sm-9">
-                                            <input name="quantity" value="{{old('quantity')}}" type="number" class="form-control" id="lname"
-                                                placeholder="Nhập số lương hiện có" />
+                                            <input name="quantity" value="{{old('quantity')}}" type="number"
+                                                class="form-control" id="lname" placeholder="Nhập số lương hiện có" />
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="cono1"
-                                            class="col-sm-3 text-end control-label col-form-label">Mô tả</label>
+                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Mô
+                                            tả</label>
                                         <div class="col-sm-9">
-                                            <textarea name="description" class="form-control">{{old('description')}}</textarea>
+                                            <textarea name="description"
+                                                class="form-control">{{old('description')}}</textarea>
                                         </div>
                                     </div>
                                 </div>

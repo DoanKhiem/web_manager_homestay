@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float('holiday_surcharge');
             $table->float('early_checkin');
             $table->float('late_checkout');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

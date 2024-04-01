@@ -55,7 +55,7 @@
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                         Thêm mới phòng
                                     </li>
@@ -78,12 +78,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         @if($errors->any())
-                            @foreach($errors->all() as $error)
-                                <div class="alert alert-danger" role="alert">
-                                    {{$error}}
-                                </div>
+                        @foreach($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                            {{$error}}
+                        </div>
 
-                            @endforeach
+                        @endforeach
                         @endif
                         <div class="card">
                             <form class="form-horizontal" action="{{route('room.store')}}" method="POST">
@@ -91,37 +91,41 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Thông tin phòng</h4>
                                     <div class="form-group row">
-                                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Tên phòng</label>
+                                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Tên
+                                            phòng</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control" id="fname"
-                                                placeholder="First Name Here" />
+                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
+                                                id="fname" placeholder="First Name Here" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Loại phòng</label>
+                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Loại
+                                            phòng</label>
                                         <div class="col-sm-9">
-                                        <select name="category_id" class="select2 form-select shadow-none"
+                                            <select name="category_id" class="select2 form-select shadow-none"
                                                 style="width: 100%; height: 36px">
                                                 <option value="">Select</option>
                                                 @foreach($categiries as $item)
-                                                <option {{old('category_id') == $item->id ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
+                                                <option {{old('category_id') == $item->id ? 'selected' : ''}}
+                                                    value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lname"
-                                            class="col-sm-3 text-end control-label col-form-label">Khu vực</label>
+                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Khu
+                                            vực</label>
                                         <div class="col-sm-9">
-                                            <input name="area" value="{{old('area')}}" type="text" class="form-control" id="lname"
-                                                placeholder="Password Here" />
+                                            <input name="area" value="{{old('area')}}" type="text" class="form-control"
+                                                id="lname" placeholder="Password Here" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="cono1"
-                                            class="col-sm-3 text-end control-label col-form-label">Mô tả</label>
+                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Mô
+                                            tả</label>
                                         <div class="col-sm-9">
-                                            <textarea name="description" class="form-control">{{old('description')}}</textarea>
+                                            <textarea name="description"
+                                                class="form-control">{{old('description')}}</textarea>
                                         </div>
                                     </div>
                                 </div>
