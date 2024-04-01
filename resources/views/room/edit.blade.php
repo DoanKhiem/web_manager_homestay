@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Thêm mới phòng</title>
+    <title>Sửa phòng</title>
     @include('layouts.head')
 
 </head>
@@ -51,13 +51,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Thêm mới phòng</h4>
+                        <h4 class="page-title">Sửa phòng</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Thêm mới phòng
+                                        Sửa phòng
                                     </li>
                                 </ol>
                             </nav>
@@ -86,15 +86,16 @@
                         @endforeach
                         @endif
                         <div class="card">
-                            <form class="form-horizontal" action="{{route('room.store')}}" method="POST">
+                            <form class="form-horizontal" action="{{route('room.update', $item->id)}}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Thông tin phòng</h4>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">Tên
                                             phòng</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
+                                            <input name="name" value="{{$item->name}}" type="text" class="form-control"
                                                 id="fname" placeholder="Nhập tên phòng" />
                                         </div>
                                     </div>
@@ -105,9 +106,9 @@
                                             <select name="category_id" class="select2 form-select shadow-none"
                                                 style="width: 100%; height: 36px">
                                                 <option value="">Select</option>
-                                                @foreach($categiries as $item)
-                                                <option {{old('category_id') == $item->id ? 'selected' : ''}}
-                                                    value="{{$item->id}}">{{$item->name}}</option>
+                                                @foreach($categiries as $category)
+                                                <option {{$item->category_id == $category->id ? 'selected' : ''}}
+                                                    value="{{$category->id}}">{{$category->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -116,7 +117,7 @@
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Khu
                                             vực</label>
                                         <div class="col-sm-9">
-                                            <input name="area" value="{{old('area')}}" type="text" class="form-control"
+                                            <input name="area" value="{{$item->area}}" type="text" class="form-control"
                                                 id="lname" placeholder="Nhập khu vực" />
                                         </div>
                                     </div>
@@ -125,7 +126,7 @@
                                             tả</label>
                                         <div class="col-sm-9">
                                             <textarea name="description"
-                                                class="form-control">{{old('description')}}</textarea>
+                                                class="form-control">{{$item->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>

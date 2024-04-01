@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class Room extends Controller
 {
@@ -33,6 +34,7 @@ class Room extends Controller
             'name' => 'required|unique:rooms',
             'category_id' => 'required',
             'area' => 'required',
+            'description' => 'string|nullable',
         ]);
         $data = $request->all();
         $status = \App\Models\Room::create($data);
@@ -66,7 +68,24 @@ class Room extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = \App\Models\Room::findOrFail($id);
+        if ($item) {
+            $this->validate($request, [
+                'name' => ['required', Rule::unique('rooms')->ignore($item->id)],
+                'category_id' => 'required',
+                'area' => 'required',
+                'description' => 'string|nullable',
+            ]);
+            $data = $request->all();
+            $status = $item->fill($data)->save();
+            if ($status) {
+                return redirect()->route('room.index')->with('success', 'Sửa phòng thành công');
+            } else {
+                return back()->with('error', 'Lỗi sửa phòng!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại phòng này!');
+        }
     }
 
     /**
