@@ -95,7 +95,7 @@
                                             phòng</label>
                                         <div class="col-sm-9">
                                             <input name="name" value="{{old('name')}}" type="text" class="form-control"
-                                                id="fname" placeholder="First Name Here" />
+                                                id="fname" placeholder="Nhập tên phòng" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -117,7 +117,7 @@
                                             vực</label>
                                         <div class="col-sm-9">
                                             <input name="area" value="{{old('area')}}" type="text" class="form-control"
-                                                id="lname" placeholder="Password Here" />
+                                                id="lname" placeholder="Nhập khu vực" />
                                         </div>
                                     </div>
                                     <div class="form-group row">

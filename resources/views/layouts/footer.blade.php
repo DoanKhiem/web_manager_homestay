@@ -46,3 +46,6 @@
 <script src="{{asset('assets/libs/jquery-minicolors/jquery.minicolors.min.js')}}"></script>
 <script src="{{asset('assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('assets/libs/quill/dist/quill.min.js')}}"></script>
+
+
+@include('layouts.swal_delete')

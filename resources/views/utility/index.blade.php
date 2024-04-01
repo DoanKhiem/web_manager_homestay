@@ -107,7 +107,7 @@
                                                         class="d-inline">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="button" class="btn btn-danger btn-sm text-white">
+                                                        <button type="button" class="deleteBtn btn btn-danger btn-sm text-white">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </button>
                                                     </form>

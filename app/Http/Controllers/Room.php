@@ -72,6 +72,16 @@ class Room extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = \App\Models\Room::findOrFail($id);
+        if ($item) {
+            $status = $item->delete();
+            if ($status) {
+                return redirect()->route('room.index')->with('success', 'Xóa phòng thành công!');
+            } else {
+                return back()->with('error', 'Lỗi xóa phòng!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại phòng này!');
+        }
     }
 }
