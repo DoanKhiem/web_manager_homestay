@@ -19,7 +19,8 @@ class Room extends Controller
      */
     public function create()
     {
-        return view('room.create');
+        $categiries = \App\Models\Category::orderBy('created_at', 'desc')->get();
+        return view('room.create', compact('categiries'));
     }
 
     /**
@@ -27,7 +28,18 @@ class Room extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:rooms',
+            'category_id' => 'required',
+            'area' => 'required',
+        ]);
+        $data = $request->all();
+        $status = \App\Models\Room::create($data);
+        if ($status) {
+            return redirect()->route('room.index')->with('success', 'Thêm mới phòng thành công');
+        } else {
+            return back()->with('error', 'Lỗi thêm mới phòng');
+        }
     }
 
     /**
