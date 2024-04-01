@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class Utility extends Controller
@@ -29,7 +29,7 @@ class Utility extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:utilities',
             'description' => 'string|nullable',
         ]);
         $data = $request->all();
@@ -63,7 +63,23 @@ class Utility extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = \App\Models\Utility::findOrFail($id);
+        if ($item) {
+            $this->validate($request, [
+                'name' => ['required', Rule::unique('utilities')->ignore($item->id)],
+                'description' => 'string|nullable',
+            ]);
+            $data = $request->all();
+            $status = $item->fill($data)->save();
+            if ($status) {
+                return redirect()->route('utility.index')->with('success', 'Sửa tiện ích thành công');
+            } else {
+                return back()->with('error', 'Lỗi sửa tiện ích');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại tiện ích này!');
+        }
+
     }
 
     /**

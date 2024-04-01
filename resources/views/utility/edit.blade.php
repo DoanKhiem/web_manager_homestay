@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Thêm mới tiện ích</title>
+    <title>Sửa tiện ích</title>
     @include('layouts.head')
 
 </head>
@@ -51,13 +51,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Thêm tiện ích</h4>
+                        <h4 class="page-title">Sửa tiện ích</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Thêm tiện ích
+                                        Sửa tiện ích
                                     </li>
                                 </ol>
                             </nav>
@@ -88,8 +88,9 @@
                         @endif
 
                         <div class="card">
-                            <form class="form-horizontal" action="{{route('utility.store')}}" method="POST">
+                            <form class="form-horizontal" action="{{route('utility.update', $item->id)}}" method="POST">
                                 @csrf
+                                @method('put')
                                 <div class="card-body">
                                     <h4 class="card-title">Thông tin tiện tích</h4>
                                     <div class="form-group row">
@@ -97,7 +98,7 @@
                                             tiện
                                             tích</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
+                                            <input name="name" value="{{$item->name}}" type="text" class="form-control"
                                                 id="fname" placeholder="Nhập tên tiện ích" />
                                         </div>
                                     </div>
@@ -106,7 +107,7 @@
                                             tả</label>
                                         <div class="col-sm-9">
                                             <textarea name="description"
-                                                class="form-control">{{old('description')}}</textarea>
+                                                class="form-control">{{$item->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>
