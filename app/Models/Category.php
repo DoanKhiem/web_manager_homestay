@@ -27,4 +27,9 @@ class Category extends Model
     {
         return $this->belongsTo(Utility::class);
     }
+
+    public function numberOfRooms()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

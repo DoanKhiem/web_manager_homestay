@@ -79,6 +79,19 @@ class Category extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = \App\Models\Category::findOrFail($id);
+        if ($item->numberOfRooms->count()) {
+            return back()->with('error', 'Đang có phòng thuộc loại phòng này!');
+        }
+        if ($item) {
+            $status = $item->delete();
+            if ($status) {
+                return redirect()->route('category.index')->with('success', 'Xóa loại phòng thành công!');
+            } else {
+                return back()->with('error', 'Lỗi xóa loại phòng!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại loại phòng này!');
+        }
     }
 }
