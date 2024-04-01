@@ -71,6 +71,16 @@ class Menu extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = \App\Models\Menu::findOrFail($id);
+        if ($item) {
+            $status = $item->delete();
+            if ($status) {
+                return redirect()->route('menu.index')->with('success', 'Xóa menu thành công!');
+            } else {
+                return back()->with('error', 'Lỗi xóa menu!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại menu này!');
+        }
     }
 }

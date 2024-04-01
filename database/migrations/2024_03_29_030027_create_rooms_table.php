@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->foreignId('category_id')->constrained();
             $table->text('area');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

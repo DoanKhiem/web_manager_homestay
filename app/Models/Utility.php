@@ -13,4 +13,9 @@ class Utility extends Model
         'name',
         'description',
     ];
+
+    public function numberOfCategory()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

@@ -70,6 +70,20 @@ class Utility extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = \App\Models\Utility::findOrFail($id);
+
+        if ($item) {
+            if ($item->numberOfCategory->count()) {
+                return back()->with('error', 'Đang có loại phòng thuộc tiện ích này này!');
+            }
+            $status = $item->delete();
+            if ($status) {
+                return redirect()->route('utility.index')->with('success', 'Xóa tiện ích thành công!');
+            } else {
+                return back()->with('error', 'Lỗi xóa tiện ích!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại tiện ích này!');
+        }
     }
 }
