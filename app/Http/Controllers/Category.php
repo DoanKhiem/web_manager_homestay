@@ -63,7 +63,9 @@ class Category extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = \App\Models\Category::findOrFail($id);
+        $utilities = \App\Models\Utility::orderBy('created_at', 'desc')->get();
+        return view('category.edit', compact(['item', 'utilities']));
     }
 
     /**

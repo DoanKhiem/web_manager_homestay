@@ -55,7 +55,8 @@ class Menu extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = \App\Models\Menu::findOrFail($id);
+        return view('menu.edit', compact('item'));
     }
 
     /**
