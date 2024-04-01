@@ -56,7 +56,9 @@ class Room extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = \App\Models\Room::findOrFail($id);
+        $categiries = \App\Models\Category::orderBy('created_at', 'desc')->get();
+        return view('room.edit', compact('item', 'categiries'));
     }
 
     /**

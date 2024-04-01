@@ -54,7 +54,8 @@ class Utility extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = \App\Models\Utility::findOrFail($id);
+        return view('utility.edit', compact('item'));
     }
 
     /**
