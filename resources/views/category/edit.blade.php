@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Thêm loại phòng</title>
+    <title>Sửa loại phòng</title>
     @include('layouts.head')
 
 </head>
@@ -51,13 +51,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Thêm loại phòng</h4>
+                        <h4 class="page-title">Sửa loại phòng</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Thêm loại phòng
+                                        Sửa loại phòng
                                     </li>
                                 </ol>
                             </nav>
@@ -85,15 +85,16 @@
                         @endforeach
                         @endif
                         <div class="card">
-                            <form class="form-horizontal" action="{{route('category.store')}}" method="POST">
+                            <form class="form-horizontal" action="{{route('category.update', $item->id)}}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Thông tin loại phòng</h4>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
                                             Tên loại phòng</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
+                                            <input name="name" value="{{$item->name}}" type="text" class="form-control"
                                                 id="fname" placeholder="Nhập tên loại phòng" />
                                         </div>
                                     </div>
@@ -105,7 +106,7 @@
                                                 style="width: 100%; height: 36px">
                                                 <option value="">Select</option>
                                                 @foreach($utilities as $utility)
-                                                <option {{old('utility_id') == $utility->id ? 'selected' : ''}}
+                                                <option {{$item->utility_id == $utility->id ? 'selected' : ''}}
                                                     value="{{$utility->id}}">{{$utility->name}}</option>
                                                 @endforeach
 
@@ -116,7 +117,7 @@
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Block
                                             đầu</label>
                                         <div class="col-sm-9">
-                                            <input name="first_block" value="{{old('first_block')}}" type="number"
+                                            <input name="first_block" value="{{$item->first_block}}" type="number"
                                                 class="form-control" placeholder="Nhập block đầu" />
                                         </div>
                                     </div>
@@ -124,7 +125,7 @@
                                         <label for="email1" class="col-sm-3 text-end control-label col-form-label">Giá
                                             block đầu</label>
                                         <div class="col-sm-9">
-                                            <input name="first_block_price" value="{{old('first_block_price')}}"
+                                            <input name="first_block_price" value="{{$item->first_block_price}}"
                                                 type="number" class="form-control" placeholder="Nhập giá block đầu" />
                                         </div>
                                     </div>
@@ -132,7 +133,7 @@
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Giá
                                             giờ sau</label>
                                         <div class="col-sm-9">
-                                            <input name="next_hour_price" value="{{old('next_hour_price')}}"
+                                            <input name="next_hour_price" value="{{$item->next_hour_price}}"
                                                 type="number" class="form-control" placeholder="Nhập giá giờ sau" />
                                         </div>
                                     </div>
@@ -140,7 +141,7 @@
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Giá
                                             ngày</label>
                                         <div class="col-sm-9">
-                                            <input name="daily_price" value="{{old('daily_price')}}" type="number"
+                                            <input name="daily_price" value="{{$item->daily_price}}" type="number"
                                                 class="form-control" placeholder="Nhập giá ngày" />
                                         </div>
                                     </div>
@@ -148,7 +149,7 @@
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
                                             thu cuối tuần</label>
                                         <div class="col-sm-9">
-                                            <input name="weekend_surcharge" value="{{old('weekend_surcharge')}}"
+                                            <input name="weekend_surcharge" value="{{$item->weekend_surcharge}}"
                                                 type="number" class="form-control"
                                                 placeholder="Nhập phụ thu cuối tuần" />
                                         </div>
@@ -157,7 +158,7 @@
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
                                             thu ngày lễ</label>
                                         <div class="col-sm-9">
-                                            <input name="holiday_surcharge" value="{{old('holiday_surcharge')}}"
+                                            <input name="holiday_surcharge" value="{{$item->holiday_surcharge}}"
                                                 type="number" class="form-control" placeholder="Nhập phụ thu ngày lễ" />
                                         </div>
                                     </div>
@@ -165,7 +166,7 @@
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
                                             thu nhận sớm</label>
                                         <div class="col-sm-9">
-                                            <input name="early_checkin" value="{{old('early_checkin')}}" type="number"
+                                            <input name="early_checkin" value="{{$item->early_checkin}}" type="number"
                                                 class="form-control" placeholder="Nhập phụ thu nhận sớm" />
                                         </div>
                                     </div>
@@ -173,7 +174,7 @@
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
                                             thu trả muộn</label>
                                         <div class="col-sm-9">
-                                            <input name="late_checkout" value="{{old('late_checkout')}}" type="number"
+                                            <input name="late_checkout" value="{{$item->late_checkout}}" type="number"
                                                 class="form-control" placeholder="Nhập phụ thu trả muộn" />
                                         </div>
                                     </div>
@@ -182,7 +183,7 @@
                                             tả</label>
                                         <div class="col-sm-9">
                                             <textarea name="description"
-                                                class="form-control">{{old('description')}}</textarea>
+                                                class="form-control">{{$item->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>

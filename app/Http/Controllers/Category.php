@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class Category extends Controller
 {
@@ -73,7 +74,30 @@ class Category extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = \App\Models\Category::findOrFail($id);
+        if ($item) {
+            $this->validate($request, [
+                'name' => ['required', Rule::unique('categories')->ignore($item->id)],
+                'utility_id' => 'required',
+                'first_block' => 'required',
+                'first_block_price' => 'required',
+                'next_hour_price' => 'required',
+                'daily_price' => 'required',
+                'weekend_surcharge' => 'required',
+                'holiday_surcharge' => 'required',
+                'early_checkin' => 'required',
+                'late_checkout' => 'required',
+            ]);
+            $data = $request->all();
+            $status = $item->fill($data)->save();
+            if ($status) {
+                return redirect()->route('category.index')->with('success', 'Sửa loại phòng thành công');
+            } else {
+                return back()->with('error', 'Lỗi sửa loại phòng');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại loại phòng này!');
+        }
     }
 
     /**

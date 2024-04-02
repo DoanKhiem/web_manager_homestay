@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class Menu extends Controller
 {
@@ -64,7 +65,23 @@ class Menu extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = \App\Models\Menu::findOrFail($id);
+        if ($item) {
+            $this->validate($request, [
+                'name' => ['required', Rule::unique('menus')->ignore($item->id)],
+                'quantity' => 'required',
+                'price' => 'required',
+            ]);
+            $data = $request->all();
+            $status = $item->fill($data)->save();
+            if ($status) {
+                return redirect()->route('menu.index')->with('success', 'Sửa menu thành công');
+            } else {
+                return back()->with('error', 'Lỗi sửa menu!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại menu này!');
+        }
     }
 
     /**

@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Thêm menu</title>
+    <title>Sửa menu</title>
     @include('layouts.head')
 
 </head>
@@ -51,13 +51,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Thêm menu</h4>
+                        <h4 class="page-title">Sửa menu</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Thêm menu
+                                        Sửa menu
                                     </li>
                                 </ol>
                             </nav>
@@ -86,15 +86,16 @@
                         @endforeach
                         @endif
                         <div class="card">
-                            <form class="form-horizontal" action="{{route('menu.store')}}" method="POST">
+                            <form class="form-horizontal" action="{{route('menu.update', $item->id)}}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Thông tin menu</h4>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">Tên
                                             sản phẩm</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
+                                            <input name="name" value="{{$item->name}}" type="text" class="form-control"
                                                 id="fname" placeholder="Nhập tên sản phẩm" />
                                         </div>
                                     </div>
@@ -102,7 +103,7 @@
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Giá
                                             bán</label>
                                         <div class="col-sm-9">
-                                            <input name="price" value="{{old('price')}}" type="number"
+                                            <input name="price" value="{{$item->price}}" type="number"
                                                 class="form-control" id="lname" placeholder="Nhập giá bán" />
                                         </div>
                                     </div>
@@ -110,7 +111,7 @@
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Số
                                             lượng hiện có</label>
                                         <div class="col-sm-9">
-                                            <input name="quantity" value="{{old('quantity')}}" type="number"
+                                            <input name="quantity" value="{{$item->quantity}}" type="number"
                                                 class="form-control" id="lname" placeholder="Nhập số lương hiện có" />
                                         </div>
                                     </div>
@@ -120,7 +121,7 @@
                                             tả</label>
                                         <div class="col-sm-9">
                                             <textarea name="description"
-                                                class="form-control">{{old('description')}}</textarea>
+                                                class="form-control">{{$item->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>
