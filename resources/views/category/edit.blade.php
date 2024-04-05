@@ -190,7 +190,7 @@
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="submit" class="btn btn-primary">
-                                            Submit
+                                            Sửa loại phòng
                                         </button>
                                     </div>
                                 </div>

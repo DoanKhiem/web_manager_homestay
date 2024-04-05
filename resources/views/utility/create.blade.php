@@ -113,7 +113,7 @@
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="submit" class="btn btn-primary">
-                                            Submit
+                                            Thêm tiện ích
                                         </button>
                                     </div>
                                 </div>
