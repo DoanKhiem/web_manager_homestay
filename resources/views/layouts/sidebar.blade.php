@@ -36,15 +36,15 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="{{route('category.index')}}" class="sidebar-link">
-                                <i class="mdi mdi-plus-box"></i>
-                                <span class="hide-menu"> Form Basic</span>
+                            <a href="{{route('booking.index')}}" class="sidebar-link">
+                                <i class="mdi mdi-format-list-bulleted"></i>
+                                <span class="hide-menu">Danh sách đặt phòng</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="form-wizard.html" class="sidebar-link">
+                            <a href="{{route('booking.create')}}" class="sidebar-link">
                                 <i class="mdi mdi-plus-box"></i>
-                                <span class="hide-menu"> Form Wizard
+                                <span class="hide-menu"> Đặt phòng
                                 </span></a>
                         </li>
                     </ul>
