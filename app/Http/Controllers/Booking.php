@@ -19,7 +19,9 @@ class Booking extends Controller
      */
     public function create()
     {
-        return view('booking.create');
+        $rooms = \App\Models\Room::orderBy('created_at', 'desc')->get();
+        $menus = \App\Models\Menu::orderBy('created_at', 'desc')->get();
+        return view('booking.create', compact('rooms', 'menus'));
     }
 
     /**

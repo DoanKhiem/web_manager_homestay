@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div class="border-top">
-                                    <div class="card-body">
+                                    <div class="card-body text-center">
                                         <button type="submit" class="btn btn-primary">
                                             Thêm menu
                                         </button>
