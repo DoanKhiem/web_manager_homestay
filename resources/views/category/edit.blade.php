@@ -113,30 +113,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Block
-                                            đầu</label>
-                                        <div class="col-sm-9">
-                                            <input name="first_block" value="{{$item->first_block}}" type="number"
-                                                class="form-control" placeholder="Nhập block đầu" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="email1" class="col-sm-3 text-end control-label col-form-label">Giá
-                                            block đầu</label>
-                                        <div class="col-sm-9">
-                                            <input name="first_block_price" value="{{$item->first_block_price}}"
-                                                type="number" class="form-control" placeholder="Nhập giá block đầu" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Giá
-                                            giờ sau</label>
-                                        <div class="col-sm-9">
-                                            <input name="next_hour_price" value="{{$item->next_hour_price}}"
-                                                type="number" class="form-control" placeholder="Nhập giá giờ sau" />
-                                        </div>
-                                    </div>
+
+
+
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Giá
                                             ngày</label>
@@ -145,39 +124,16 @@
                                                 class="form-control" placeholder="Nhập giá ngày" />
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
-                                            thu cuối tuần</label>
+                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Giá giờ</label>
                                         <div class="col-sm-9">
-                                            <input name="weekend_surcharge" value="{{$item->weekend_surcharge}}"
-                                                type="number" class="form-control"
-                                                placeholder="Nhập phụ thu cuối tuần" />
+                                            <input name="hourly_price" value="{{$item->hourly_price}}" type="number"
+                                                   class="form-control" placeholder="Nhập giá giờ" />
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
-                                            thu ngày lễ</label>
-                                        <div class="col-sm-9">
-                                            <input name="holiday_surcharge" value="{{$item->holiday_surcharge}}"
-                                                type="number" class="form-control" placeholder="Nhập phụ thu ngày lễ" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
-                                            thu nhận sớm</label>
-                                        <div class="col-sm-9">
-                                            <input name="early_checkin" value="{{$item->early_checkin}}" type="number"
-                                                class="form-control" placeholder="Nhập phụ thu nhận sớm" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Phụ
-                                            thu trả muộn</label>
-                                        <div class="col-sm-9">
-                                            <input name="late_checkout" value="{{$item->late_checkout}}" type="number"
-                                                class="form-control" placeholder="Nhập phụ thu trả muộn" />
-                                        </div>
-                                    </div>
+
+
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Mô
                                             tả</label>

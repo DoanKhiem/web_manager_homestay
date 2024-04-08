@@ -88,14 +88,10 @@
                                                 <th>STT</th>
                                                 <th>Tên loại phòng</th>
                                                 <th>Tiện ích</th>
-                                                <th>Block đầu</th>
-                                                <th>Giá block đầu</th>
-                                                <th>Giá giờ sau</th>
+
                                                 <th>Giá ngày</th>
-                                                <th>Phụ thu cuối tuần</th>
-                                                <th>Phụ thu ngày lễ</th>
-                                                <th>Phụ thu nhận sớm</th>
-                                                <th>Phụ thu trả muộn</th>
+                                                <th>Giá giờ</th>
+
                                                 <th>Mô tả</th>
                                                 <th>Hành động</th>
                                             </tr>
@@ -106,14 +102,10 @@
                                                 <td>{{$loop->index + 1}}</td>
                                                 <td>{{$item->name}}</td>
                                                 <td>{{$item->utility->name}}</td>
-                                                <td>{{$item->first_block}}</td>
-                                                <td>{{$item->first_block_price}}</td>
-                                                <td>{{$item->next_hour_price}}</td>
+
                                                 <td>{{$item->daily_price}}</td>
-                                                <td>{{$item->weekend_surcharge}}</td>
-                                                <td>{{$item->holiday_surcharge}}</td>
-                                                <td>{{$item->early_checkin}}</td>
-                                                <td>{{$item->late_checkout}}</td>
+                                                <td>{{$item->hourly_price}}</td>
+
                                                 <td>{{$item->description}}</td>
                                                 <td>
                                                     <a href="{{route('category.edit', $item->id)}}">
