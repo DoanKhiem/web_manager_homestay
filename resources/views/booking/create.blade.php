@@ -10,6 +10,9 @@
     <title>Đặt phòng</title>
     @include('layouts.head')
 
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body>
@@ -91,15 +94,15 @@
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
                                             Tên khách hàng</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
-                                                id="fname" placeholder="Nhập tên khách hàng" />
+                                            <input name="customer_name" value="{{old('customer_name')}}" type="text" class="form-control"
+                                                id="fname" placeholder="Nhập tên khách hàng" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
                                             Số điện thoại</label>
                                         <div class="col-sm-9">
-                                            <input name="phone" value="{{old('phone')}}" type="text"
+                                            <input name="phone_number" value="{{old('phone_number')}}" type="text" required
                                                 class="form-control" id="fname" placeholder="Nhập số điện thoại" />
                                         </div>
                                     </div>
@@ -107,26 +110,15 @@
                                         <label for="lname"
                                             class="col-sm-3 text-end control-label col-form-label">Phòng</label>
                                         <div class="col-md-9">
-                                            <select name="room_id" class="select2 form-select shadow-none"
-                                                style="width: 100%; height: 36px">
+                                            <select name="room_id[]"
+                                                class="select2 form-select shadow-none mt-3"
+                                                multiple="multiple" required
+                                                style="height: 36px; width: 100%"
+                                            >
                                                 <option value="">Select</option>
                                                 @foreach($rooms as $room)
-                                                <option {{old('room_id') == $room->id ? 'selected' : ''}}
-                                                    value="{{$room->id}}">{{$room->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="lname"
-                                            class="col-sm-3 text-end control-label col-form-label">Menu</label>
-                                        <div class="col-md-9">
-                                            <select name="menu_id" class="select2 form-select shadow-none"
-                                                style="width: 100%; height: 36px">
-                                                <option value="">Select</option>
-                                                @foreach($menus as $menu)
-                                                <option {{old('menu_id') == $menu->id ? 'selected' : ''}}
-                                                    value="{{$menu->id}}">{{$menu->name}}</option>
+                                                    <option {{old('room_id') == $room->id ? 'selected' : ''}}
+                                                            value="{{$room->id}}">{{$room->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -135,14 +127,14 @@
                                         <label class="col-md-3 text-end control-label col-form-label">Hình thức đặt phòng</label>
                                         <div class="col-md-9">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input"
-                                                    id="customControlValidation1" name="radio-stacked" checked required />
+                                                <input type="radio" class="form-check-input" value="hour"
+                                                    id="customControlValidation1" name="booking_category" checked required />
                                                 <label class="form-check-label mb-0" for="customControlValidation1">Theo
                                                     giờ</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input"
-                                                    id="customControlValidation2" name="radio-stacked" required />
+                                                <input type="radio" class="form-check-input" value="day"
+                                                    id="customControlValidation2" name="booking_category" required />
                                                 <label class="form-check-label mb-0"
                                                     for="customControlValidation2">Theo ngày</label>
                                             </div>
@@ -150,56 +142,49 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Ngày giờ đến</label>
+                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Khoảng thời gian</label>
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input
-                                                    type="datetime-local"
-                                                    class="form-control" placeholder="mm/dd/yyyy hh:mm:ss"/>
+                                                <input type="text" name="period_time" class="form-control" value="" required/>
+{{--                                                <input--}}
+{{--                                                    type="datetime-local" required--}}
+{{--                                                    class="form-control" placeholder="mm/dd/yyyy hh:mm:ss"/>--}}
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="email1" class="col-sm-3 text-end control-label col-form-label">Ngày giờ đi</label>
-                                        <div class="col-sm-9">
-                                            <input
-                                                type="datetime-local"
-                                                class="form-control" placeholder="mm/dd/yyyy hh:mm:ss"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Tổng thời gian dự kiến</label>
                                         <div class="col-sm-9">
-                                            <input name="next_hour_price" value="{{old('next_hour_price')}}"
-                                                type="number" class="form-control" placeholder="Nhập giá giờ sau" />
+                                            <input name="total_time" value="{{old('total_time')}}" required
+                                                type="number" class="form-control" placeholder="Nhập tổng thời gian dự kiến" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Tổng tiền phòng</label>
                                         <div class="col-sm-9">
-                                            <input name="daily_price" value="{{old('daily_price')}}" type="number"
-                                                class="form-control" placeholder="Nhập giá ngày" />
+                                            <input name="booking_price" value="{{old('booking_price')}}" type="number"
+                                                class="form-control" placeholder="Nhập tổng tiền phòng" required/>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Người lớn</label>
                                         <div class="col-sm-9">
-                                            <input name="holiday_surcharge" value="{{old('holiday_surcharge')}}"
-                                                type="number" class="form-control" placeholder="Nhập phụ thu ngày lễ" />
+                                            <input name="adult" value="{{old('adult')}}"
+                                                type="number" class="form-control" placeholder="Nhập người lớn" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Trẻ em</label>
                                         <div class="col-sm-9">
-                                            <input name="early_checkin" value="{{old('early_checkin')}}" type="number"
-                                                class="form-control" placeholder="Nhập phụ thu nhận sớm" />
+                                            <input name="kid" value="{{old('kid')}}" type="number"
+                                                class="form-control" placeholder="Nhập trẻ em" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Ghi chú</label>
                                         <div class="col-sm-9">
-                                            <textarea name="description"
+                                            <textarea name="description" placeholder="Nhập ghi chú"
                                                 class="form-control">{{old('description')}}</textarea>
                                         </div>
                                     </div>
@@ -281,6 +266,53 @@
     var quill = new Quill("#editor", {
         theme: "snow",
     });
+    </script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+        $(function() {
+            $('input[name="period_time"]').daterangepicker({
+                timePicker: true,
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear',
+                    format: 'DD/MM/YYYY hh:mm A'
+                }
+            }, function(start, end, label) {
+                var hours = end.diff(start, 'hours');
+                var days = end.diff(start, 'days');
+                var bookingType = $('input[name="booking_category"]:checked').val();
+                if (bookingType === 'day') {
+                    $('input[name="total_time"]').val(days);
+                } else if (bookingType === 'hour') {
+                    $('input[name="total_time"]').val(hours);
+                }
+            });
+
+            $('input[name="period_time"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/YYYY hh:mm A') + ' - ' + picker.endDate.format('DD/MM/YYYY hh:mm A'));
+            });
+
+            $('input[name="period_time"]').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
+
+            $('input[name="booking_category"]').change(function() {
+                var startEnd = $('input[name="period_time"]').data('daterangepicker');
+                console.log(startEnd.endDate, startEnd.startDate);
+                var hours = startEnd.endDate.diff(startEnd.startDate, 'hours');
+                var days = startEnd.endDate.diff(startEnd.startDate, 'days');
+                var bookingType = $(this).val();
+                if (bookingType === 'day') {
+                    $('input[name="total_time"]').val(days);
+                } else if (bookingType === 'hour') {
+                    $('input[name="total_time"]').val(hours);
+                }
+            });
+        });
     </script>
 </body>
 

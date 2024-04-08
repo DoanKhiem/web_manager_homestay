@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class BookingDetail extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'customer_name',
+        'phone_number',
+        'booking_category',
+        'period_time',
+        'total_time',
+        'booking_price',
+        'adult',
+        'kid',
+    ];
+
+    public function rooms()
+    {
+        return $this->belongsToMany(Room::class, 'booking_detail_room', 'booking_detail_id', 'room_id');
+    }
 }

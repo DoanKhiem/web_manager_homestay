@@ -29,7 +29,27 @@ class Booking extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'customer_name' => 'required',
+            'phone_number' => 'required',
+            'room_id' => 'required',
+            'booking_category' => 'required',
+            'period_time' => 'required',
+            'adult' => 'required',
+            'kid' => 'required',
+            'total_time' => 'required',
+            'booking_price' => 'required',
+        ]);
+
+        $data = $request->all();
+        $status = \App\Models\BookingDetail::create($data);
+        if ($status) {
+            $status->rooms()->sync($request->room_id);
+            return redirect()->route('booking.index')->with('success', 'Đặt phòng thành công!');
+        } else {
+            return back()->with('error', 'Lỗi đặt phòng!');
+        }
+//        dd($request->all());
     }
 
     /**

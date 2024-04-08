@@ -13,18 +13,17 @@ return new class extends Migration
     {
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('room_id')->constrained();
-            $table->foreignId('menu_id')->constrained();
+//            $table->foreignId('category_id')->constrained();
+//            $table->foreignId('room_id')->constrained();
+//            $table->foreignId('menu_id')->constrained();
             $table->string('customer_name');
             $table->string('phone_number');
             $table->string('booking_category');
-            $table->dateTime('checkin');
-            $table->dateTime('checkout');
-            $table->integer('total_time');
-            $table->float('booking_price');
-            $table->integer('menu_quantity');
-            $table->float('menu_price');
+            $table->string('period_time');
+            $table->decimal('total_time', 15, 0);
+            $table->decimal('booking_price', 15, 0);
+//            $table->integer('menu_quantity');
+//            $table->float('menu_price');
             $table->integer('adult');
             $table->integer('kid');
             $table->timestamps();

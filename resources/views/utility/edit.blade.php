@@ -99,7 +99,7 @@
                                             tích</label>
                                         <div class="col-sm-9">
                                             <input name="name" value="{{$item->name}}" type="text" class="form-control"
-                                                id="fname" placeholder="Nhập tên tiện ích" />
+                                                id="fname" placeholder="Nhập tên tiện ích" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
