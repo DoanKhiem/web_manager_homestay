@@ -161,7 +161,10 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Tổng tiền phòng</label>
-                                        <div class="col-sm-9">
+                                        <button type="button" id="total" class="btn btn-primary col-sm-1">
+                                            Tính tiền
+                                        </button>
+                                        <div class="col-sm-8">
                                             <input name="booking_price" value="{{old('booking_price')}}" type="number"
                                                 class="form-control" placeholder="Nhập tổng tiền phòng" required/>
                                         </div>
@@ -311,6 +314,46 @@
                 } else if (bookingType === 'hour') {
                     $('input[name="total_time"]').val(hours);
                 }
+            });
+        });
+        var rooms = @json($rooms);
+        var categories = @json($categories);
+        $(document).ready(function() {
+            // Bắt sự kiện click trên nút "Tính tiền"
+            $('#total').click(function(e) {
+                e.preventDefault(); // Ngăn chặn hành vi mặc định của nút submit
+
+                // Lấy tất cả các id phòng đã được chọn
+                var selectedRoomIds = $('select[name="room_id[]"]').val();
+                console.log(selectedRoomIds);
+                // Duyệt qua từng id phòng
+                var total = 0;
+                var bookingType = $('input[name="booking_category"]:checked').val();
+                $.each(selectedRoomIds, function(index, roomId) {
+                    // Tại đây, bạn có thể sử dụng roomId để lấy giá của phòng tương ứng
+                    // Ví dụ: bạn có thể gọi AJAX để lấy giá từ server
+                    var room = rooms.find(function(room) {
+                        return room.id == roomId;
+                    });
+                    // Kiểm tra nếu tìm thấy phòng
+                    if (room) {
+                        // Lấy giá phòng
+                        var category = categories.find(function(category) {
+                            return category.id == room.category_id;
+                        });
+                        if (bookingType === 'day') {
+                            total += $('input[name="total_time"]').val() * category.daily_price;
+                        } else if (bookingType === 'hour') {
+                            total += $('input[name="total_time"]').val() * category.hourly_price;
+                        }
+                        // var price = category.price;
+
+                        // total += price;
+                        // Cập nhật giá phòng vào input
+
+                    }
+                });
+                $('input[name="booking_price"]').val(total);
             });
         });
     </script>
