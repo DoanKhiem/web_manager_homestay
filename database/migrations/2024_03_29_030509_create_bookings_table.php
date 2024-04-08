@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('booking_detail_id')->constrained();
             $table->string('status');
             $table->decimal('total_amount', 15, 0);
-            $table->decimal('customer_pay', 15, 0);
+//            $table->decimal('customer_pay', 15, 0);
             $table->timestamps();
         });
     }

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('utility_id')->constrained();
 //            $table->integer('first_block');
 //            $table->float('first_block_price');
-            $table->float('hourly_price');
-            $table->float('daily_price');
+            $table->decimal('hourly_price', 15, 0);
+            $table->decimal('daily_price', 15, 0);
 //            $table->float('weekend_surcharge');
 //            $table->float('holiday_surcharge');
 //            $table->float('early_checkin');

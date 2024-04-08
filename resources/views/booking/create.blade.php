@@ -94,7 +94,7 @@
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
                                             Tên khách hàng</label>
                                         <div class="col-sm-9">
-                                            <input name="name" value="{{old('name')}}" type="text" class="form-control"
+                                            <input name="customer_name" value="{{old('customer_name')}}" type="text" class="form-control"
                                                 id="fname" placeholder="Nhập tên khách hàng" required/>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
                                             Số điện thoại</label>
                                         <div class="col-sm-9">
-                                            <input name="phone" value="{{old('phone')}}" type="text" required
+                                            <input name="phone_number" value="{{old('phone_number')}}" type="text" required
                                                 class="form-control" id="fname" placeholder="Nhập số điện thoại" />
                                         </div>
                                     </div>
@@ -121,32 +121,8 @@
                                                             value="{{$room->id}}">{{$room->name}}</option>
                                                 @endforeach
                                             </select>
-
-{{--                                            <select name="room_id" class="select2 form-select shadow-none"--}}
-{{--                                                style="width: 100%; height: 36px">--}}
-{{--                                                <option value="">Select</option>--}}
-{{--                                                @foreach($rooms as $room)--}}
-{{--                                                <option {{old('room_id') == $room->id ? 'selected' : ''}}--}}
-{{--                                                    value="{{$room->id}}">{{$room->name}}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
                                         </div>
                                     </div>
-{{--                                    <div class="form-group row">--}}
-{{--                                        <label for="lname"--}}
-{{--                                            class="col-sm-3 text-end control-label col-form-label">Menu</label>--}}
-{{--                                        <div class="col-md-9">--}}
-{{--                                            <select name="menu_id[]" class="select2 form-select shadow-none mt-3"--}}
-{{--                                                    multiple="multiple" required--}}
-{{--                                                    style="height: 36px; width: 100%">--}}
-{{--                                                <option value="">Select</option>--}}
-{{--                                                @foreach($menus as $menu)--}}
-{{--                                                <option {{old('menu_id') == $menu->id ? 'selected' : ''}}--}}
-{{--                                                    value="{{$menu->id}}">{{$menu->name}}</option>--}}
-{{--                                                @endforeach--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
                                     <div class="form-group row">
                                         <label class="col-md-3 text-end control-label col-form-label">Hình thức đặt phòng</label>
                                         <div class="col-md-9">
@@ -186,7 +162,7 @@
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Tổng tiền phòng</label>
                                         <div class="col-sm-9">
-                                            <input name="daily_price" value="{{old('daily_price')}}" type="number"
+                                            <input name="booking_price" value="{{old('booking_price')}}" type="number"
                                                 class="form-control" placeholder="Nhập tổng tiền phòng" required/>
                                         </div>
                                     </div>
@@ -194,14 +170,14 @@
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Người lớn</label>
                                         <div class="col-sm-9">
-                                            <input name="holiday_surcharge" value="{{old('holiday_surcharge')}}"
+                                            <input name="adult" value="{{old('adult')}}"
                                                 type="number" class="form-control" placeholder="Nhập người lớn" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Trẻ em</label>
                                         <div class="col-sm-9">
-                                            <input name="early_checkin" value="{{old('early_checkin')}}" type="number"
+                                            <input name="kid" value="{{old('kid')}}" type="number"
                                                 class="form-control" placeholder="Nhập trẻ em" required/>
                                         </div>
                                     </div>

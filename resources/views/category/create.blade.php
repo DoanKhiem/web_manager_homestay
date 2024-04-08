@@ -116,14 +116,14 @@
                                         <label for="email1" class="col-sm-3 text-end control-label col-form-label">Giá giờ</label>
                                         <div class="col-sm-9">
                                             <input name="hourly_price" value="{{old('hourly_price')}}"
-                                                type="number" class="form-control" placeholder="Nhập giá block đầu" />
+                                                type="number" class="form-control" placeholder="Nhập giá giờ" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Giá ngày</label>
                                         <div class="col-sm-9">
                                             <input name="daily_price" value="{{old('daily_price')}}"
-                                                type="number" class="form-control" placeholder="Nhập giá giờ sau" />
+                                                type="number" class="form-control" placeholder="Nhập giá ngày" />
                                         </div>
                                     </div>
                                     <div class="form-group row">

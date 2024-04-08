@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('booking_category');
             $table->string('period_time');
-            $table->integer('total_time');
-            $table->float('booking_price');
+            $table->decimal('total_time', 15, 0);
+            $table->decimal('booking_price', 15, 0);
 //            $table->integer('menu_quantity');
 //            $table->float('menu_price');
             $table->integer('adult');
