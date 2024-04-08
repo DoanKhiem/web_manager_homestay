@@ -95,14 +95,14 @@
                                             sản phẩm</label>
                                         <div class="col-sm-9">
                                             <input name="name" value="{{old('name')}}" type="text" class="form-control"
-                                                id="fname" placeholder="Nhập tên sản phẩm" />
+                                                id="fname" placeholder="Nhập tên sản phẩm" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Giá
                                             bán</label>
                                         <div class="col-sm-9">
-                                            <input name="price" value="{{old('price')}}" type="number"
+                                            <input name="price" value="{{old('price')}}" type="number" required
                                                 class="form-control" id="lname" placeholder="Nhập giá bán" />
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Số
                                             lượng hiện có</label>
                                         <div class="col-sm-9">
-                                            <input name="quantity" value="{{old('quantity')}}" type="number"
+                                            <input name="quantity" value="{{old('quantity')}}" type="number" required
                                                 class="form-control" id="lname" placeholder="Nhập số lương hiện có" />
                                         </div>
                                     </div>

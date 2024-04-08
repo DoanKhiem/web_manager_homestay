@@ -95,14 +95,14 @@
                                             phòng</label>
                                         <div class="col-sm-9">
                                             <input name="name" value="{{old('name')}}" type="text" class="form-control"
-                                                id="fname" placeholder="Nhập tên phòng" />
+                                                id="fname" placeholder="Nhập tên phòng" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Loại
                                             phòng</label>
                                         <div class="col-sm-9">
-                                            <select name="category_id" class="select2 form-select shadow-none"
+                                            <select name="category_id" class="select2 form-select shadow-none" required
                                                 style="width: 100%; height: 36px">
                                                 <option value="">Select</option>
                                                 @foreach($categiries as $item)
@@ -117,7 +117,7 @@
                                             vực</label>
                                         <div class="col-sm-9">
                                             <input name="area" value="{{old('area')}}" type="text" class="form-control"
-                                                id="lname" placeholder="Nhập khu vực" />
+                                                id="lname" placeholder="Nhập khu vực" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
