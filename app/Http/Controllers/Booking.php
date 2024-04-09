@@ -77,7 +77,11 @@ class Booking extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = \App\Models\Booking::findOrFail($id);
+        $rooms = \App\Models\Room::orderBy('created_at', 'desc')->get();
+        $menus = \App\Models\Menu::orderBy('created_at', 'desc')->get();
+        $categories = \App\Models\Category::orderBy('created_at', 'desc')->get();
+        return view('booking.edit', compact('item', 'rooms', 'menus', 'categories'));
     }
 
     /**

@@ -103,7 +103,13 @@
                                                 <td>{{$item->bookingDetail->customer_name}}</td>
                                                 <td>{{$item->booking_status}}</td>
                                                 <td>{{$item->customer_pay}}</td>
-                                                <td>abc</td>
+                                                <td>
+                                                    <a href="{{route('booking.edit', $item->id)}}">
+                                                        <button type="button" class="btn btn-warning btn-sm">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </a>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
