@@ -124,6 +124,21 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="lname" class="col-sm-3 text-end control-label col-form-label">Trạng thái phòng</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <select name="booking_status"
+                                                    class="select2 form-select shadow-none"
+                                                    style="width: 100%; height: 36px"
+                                                >
+                                                    <option value="1">Chưa nhận phòng</option>
+                                                    <option value="2">Đã nhận phòng</option>
+                                                    <option value="3">Đã trả phòng</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-md-3 text-end control-label col-form-label">Hình thức đặt phòng</label>
                                         <div class="col-md-9">
                                             <div class="form-check">
@@ -169,6 +184,13 @@
                                                 class="form-control" placeholder="Nhập tổng tiền phòng" required/>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Số tiền khách cần trả</label>
+                                        <div class="col-sm-8">
+                                            <input name="total_amount" value="{{old('total_amount')}}" type="number"
+                                                   class="form-control" placeholder="Nhập số tiền khách cần trả" required/>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Người lớn</label>
@@ -201,9 +223,7 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
-
                 </div>
                 <!-- ============================================================== -->
             </div>
@@ -354,6 +374,7 @@
                     }
                 });
                 $('input[name="booking_price"]').val(total);
+                $('input[name="total_amount"]').val(total);
             });
         });
     </script>

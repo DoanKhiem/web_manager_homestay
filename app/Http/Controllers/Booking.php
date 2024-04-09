@@ -11,7 +11,8 @@ class Booking extends Controller
      */
     public function index()
     {
-        return view('booking.index');
+        $datas = \App\Models\Booking::orderBy('created_at', 'desc')->get();
+        return view('booking.index', compact('datas'));
     }
 
     /**
@@ -40,13 +41,23 @@ class Booking extends Controller
             'kid' => 'required',
             'total_time' => 'required',
             'booking_price' => 'required',
+            'booking_status' => 'required',
+            'total_amount' => 'required',
         ]);
 
-        $data = $request->all();
+        $data = $request->except(['booking_status', 'total_amount']);
         $status = \App\Models\BookingDetail::create($data);
         if ($status) {
             $status->rooms()->sync($request->room_id);
-            return redirect()->route('booking.index')->with('success', 'Đặt phòng thành công!');
+            $booking = \App\Models\Booking::create([
+                'booking_detail_id' => $status->id,
+                'booking_status' => $request->booking_status,
+                'total_amount' => $request->total_amount,
+            ]);
+            if ($booking) {
+                return redirect()->route('booking.index')->with('success', 'Đặt phòng thành công!');
+            }
+
         } else {
             return back()->with('error', 'Lỗi đặt phòng!');
         }
