@@ -77,9 +77,10 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
+                        @include('layouts.notification')
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Basic Datatable</h5>
+                                <h5 class="card-title">Danh sách đặt phòng</h5>
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
@@ -90,17 +91,27 @@
                                                 <th>Khách hàng</th>
                                                 <th>Trạng thái</th>
                                                 <th>Tổng tiền</th>
+                                                <th>Chức năng</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($datas as $item)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>{{$loop->index + 1}}</td>
+                                                <td>PA00{{$item->id}}</td>
+                                                <td>{{$item->bookingDetail->period_time}}</td>
+                                                <td>{{$item->bookingDetail->customer_name}}</td>
+                                                <td>{{$item->booking_status}}</td>
+                                                <td>{{$item->customer_pay}}</td>
+                                                <td>
+                                                    <a href="{{route('booking.edit', $item->id)}}">
+                                                        <button type="button" class="btn btn-warning btn-sm">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </a>
+                                                </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
 
                                     </table>

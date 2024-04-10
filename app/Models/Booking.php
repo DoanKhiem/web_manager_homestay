@@ -11,7 +11,12 @@ class Booking extends Model
 
     protected $fillable = [
         'booking_detail_id',
-        'status',
+        'booking_status',
         'total_amount',
     ];
+
+    public function bookingDetail()
+    {
+        return $this->belongsTo(BookingDetail::class);
+    }
 }

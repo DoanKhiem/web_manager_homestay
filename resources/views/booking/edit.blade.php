@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Đặt phòng</title>
+    <title>Sửa phòng</title>
     @include('layouts.head')
 
 
@@ -54,13 +54,13 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Đặt phòng</h4>
+                        <h4 class="page-title">Sửa đặt phòng</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        Đặt phòng
+                                        Sửa đặt phòng
                                     </li>
                                 </ol>
                             </nav>
@@ -86,15 +86,16 @@
                         @endforeach
                         @endif
                         <div class="card">
-                            <form class="form-horizontal" action="{{route('booking.store')}}" method="POST">
+                            <form class="form-horizontal" action="{{route('booking.update', $item->id)}}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h4 class="card-title">Thông tin đặt phòng</h4>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
                                             Tên khách hàng</label>
                                         <div class="col-sm-9">
-                                            <input name="customer_name" value="{{old('customer_name')}}" type="text" class="form-control"
+                                            <input name="customer_name" value="{{$item->bookingDetail->customer_name}}" type="text" class="form-control"
                                                 id="fname" placeholder="Nhập tên khách hàng" required/>
                                         </div>
                                     </div>
@@ -102,7 +103,7 @@
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
                                             Số điện thoại</label>
                                         <div class="col-sm-9">
-                                            <input name="phone_number" value="{{old('phone_number')}}" type="text" required
+                                            <input name="phone_number" value="{{$item->bookingDetail->phone_number}}" type="text" required
                                                 class="form-control" id="fname" placeholder="Nhập số điện thoại" />
                                         </div>
                                     </div>
@@ -117,7 +118,7 @@
                                             >
                                                 <option value="">Select</option>
                                                 @foreach($rooms as $room)
-                                                    <option {{old('room_id') == $room->id ? 'selected' : ''}}
+                                                    <option {{ in_array($room->id, $item->bookingDetail->rooms->pluck('id')->toArray()) ? 'selected' : '' }}
                                                             value="{{$room->id}}">{{$room->name}}</option>
                                                 @endforeach
                                             </select>
@@ -131,9 +132,9 @@
                                                     class="select2 form-select shadow-none"
                                                     style="width: 100%; height: 36px"
                                                 >
-                                                    <option value="1">Chưa nhận phòng</option>
-                                                    <option value="2">Đã nhận phòng</option>
-                                                    <option value="3">Đã trả phòng</option>
+                                                    <option value="1" {{$item->booking_status == 1 ? 'selected' : ''}}>Chưa nhận phòng</option>
+                                                    <option value="2" {{$item->booking_status == 2 ? 'selected' : ''}}>Đã nhận phòng</option>
+                                                    <option value="3" {{$item->booking_status == 3 ? 'selected' : ''}}>Đã trả phòng</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -143,12 +144,12 @@
                                         <div class="col-md-9">
                                             <div class="form-check">
                                                 <input type="radio" class="form-check-input" value="hour"
-                                                    id="customControlValidation1" name="booking_category" checked required />
+                                                    id="customControlValidation1" name="booking_category" {{$item->bookingDetail->booking_category == 'hour' ? 'checked' : ''}}  required />
                                                 <label class="form-check-label mb-0" for="customControlValidation1">Theo
                                                     giờ</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" value="day"
+                                                <input type="radio" class="form-check-input" value="day" {{$item->bookingDetail->booking_category == 'day' ? 'checked' : ''}}
                                                     id="customControlValidation2" name="booking_category" required />
                                                 <label class="form-check-label mb-0"
                                                     for="customControlValidation2">Theo ngày</label>
@@ -160,7 +161,7 @@
                                         <label for="lname" class="col-sm-3 text-end control-label col-form-label">Khoảng thời gian</label>
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input type="text" name="period_time" class="form-control" value="{{old('period_time')}}" required/>
+                                                <input type="text" name="period_time" class="form-control" value="{{$item->bookingDetail->period_time}}" required/>
 {{--                                                <input--}}
 {{--                                                    type="datetime-local" required--}}
 {{--                                                    class="form-control" placeholder="mm/dd/yyyy hh:mm:ss"/>--}}
@@ -170,7 +171,7 @@
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Tổng thời gian dự kiến</label>
                                         <div class="col-sm-9">
-                                            <input name="total_time" value="{{old('total_time')}}" required
+                                            <input name="total_time" value="{{$item->bookingDetail->total_time}}" required
                                                 type="number" class="form-control" placeholder="Nhập tổng thời gian dự kiến" />
                                         </div>
                                     </div>
@@ -180,14 +181,14 @@
                                             Tính tiền
                                         </button>
                                         <div class="col-sm-7">
-                                            <input name="booking_price" value="{{old('booking_price')}}" type="number"
+                                            <input name="booking_price" value="{{$item->bookingDetail->booking_price}}" type="number"
                                                 class="form-control" placeholder="Nhập tổng tiền phòng" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Số tiền khách cần trả</label>
                                         <div class="col-sm-8">
-                                            <input name="total_amount" value="{{old('total_amount')}}" type="number"
+                                            <input name="total_amount" value="{{$item->total_amount}}" type="number"
                                                    class="form-control" placeholder="Nhập số tiền khách cần trả" required/>
                                         </div>
                                     </div>
@@ -195,14 +196,14 @@
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Người lớn</label>
                                         <div class="col-sm-9">
-                                            <input name="adult" value="{{old('adult')}}"
+                                            <input name="adult" value="{{$item->bookingDetail->adult}}"
                                                 type="number" class="form-control" placeholder="Nhập người lớn" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Trẻ em</label>
                                         <div class="col-sm-9">
-                                            <input name="kid" value="{{old('kid')}}" type="number"
+                                            <input name="kid" value="{{$item->bookingDetail->kid}}" type="number"
                                                 class="form-control" placeholder="Nhập trẻ em" required/>
                                         </div>
                                     </div>
@@ -210,14 +211,14 @@
                                         <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Ghi chú</label>
                                         <div class="col-sm-9">
                                             <textarea name="description" placeholder="Nhập ghi chú"
-                                                class="form-control">{{old('description')}}</textarea>
+                                                class="form-control">{{$item->bookingDetail->description}}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="border-top">
                                     <div class="card-body text-center">
                                         <button type="submit" class="btn btn-primary">
-                                            Đặt phòng
+                                            Sửa đặt phòng
                                         </button>
                                     </div>
                                 </div>
