@@ -90,6 +90,7 @@
                             @csrf
                             <div class="card-body">
                                 <h4 class="card-title">Danh sách menu đặt phòng</h4>
+                                <input name="booking_detail_id" value="{{$item->id}}" style="display: none">
                                 @foreach($menus as $menu)
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-end control-label col-form-label">
@@ -104,7 +105,8 @@
                                         Thành tiền:
                                     </label>
                                     <div class="col-sm-2">
-                                        <input name="total-{{$menu->id}}" value="0" disabled type="number" class="form-control total-{{$menu->id}}"/>
+                                        <input name="total-{{$menu->id}}" style="display: none" value="0" type="number" class="form-control total-{{$menu->id}}"/>
+                                        <input  value="0" disabled type="number" class="form-control total-{{$menu->id}}"/>
                                     </div>
                                 </div>
                                 @endforeach
