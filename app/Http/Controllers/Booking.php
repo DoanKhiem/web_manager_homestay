@@ -99,4 +99,30 @@ class Booking extends Controller
     {
         //
     }
+
+    public function addMenu(string $id)
+    {
+        $item = \App\Models\Booking::findOrFail($id);
+        $menus = \App\Models\Menu::orderBy('created_at', 'desc')->get();
+        return view('booking.add-menu', compact('item', 'menus'));
+    }
+
+    public function createMenu(Request $request)
+    {
+        dd($request->all());
+        $this->validate($request, [
+            'menu_id' => 'required',
+            'quantity' => 'required',
+            'price' => 'required',
+        ]);
+
+//        $data = $request->except(['menu_id', 'quantity', 'price']);
+//        $status = \App\Models\BookingMenu::create($data);
+//        if ($status) {
+//            $status->menus()->sync($request->menu_id);
+//            return redirect()->route('booking.index')->with('success', 'Thêm món ăn thành công!');
+//        } else {
+//            return back()->with('error', 'Lỗi thêm món ăn!');
+//        }
+    }
 }

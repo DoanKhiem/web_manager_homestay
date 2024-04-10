@@ -101,14 +101,47 @@
                                                 <td>PA00{{$item->id}}</td>
                                                 <td>{{$item->bookingDetail->period_time}}</td>
                                                 <td>{{$item->bookingDetail->customer_name}}</td>
-                                                <td>{{$item->booking_status}}</td>
+                                                <td>
+                                                    @if($item->booking_status == 1)
+                                                    <button type="button" class="btn btn-cyan btn-sm text-white">
+                                                        Chưa nhận phòng
+                                                    </button>
+                                                    @elseif($item->booking_status == 2)
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-success btn-sm text-white"
+                                                    >
+                                                        Đã nhân phòng
+                                                    </button>
+                                                    @else
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-danger btn-sm text-white"
+                                                    >
+                                                        Đã trả phòng
+                                                    </button>
+                                                    @endif
+                                                </td>
                                                 <td>{{$item->customer_pay}}</td>
                                                 <td>
+                                                    <a href="{{route('booking.menu', $item->id)}}">
+                                                        <button type="button" class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-plus-square"></i> Thêm menu
+                                                        </button>
+                                                    </a>
                                                     <a href="{{route('booking.edit', $item->id)}}">
                                                         <button type="button" class="btn btn-warning btn-sm">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
                                                     </a>
+                                                    <form action="{{route('booking.destroy', $item->id)}}"
+                                                          method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="button" class="deleteBtn btn btn-danger btn-sm text-white">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @endforeach
