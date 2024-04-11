@@ -24,4 +24,9 @@ class BookingDetail extends Model
     {
         return $this->belongsToMany(Room::class, 'booking_detail_room', 'booking_detail_id', 'room_id');
     }
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'booking_detail_menu', 'booking_detail_id', 'menu_id');
+    }
 }

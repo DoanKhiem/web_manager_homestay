@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 
     // booking
     Route::resource('booking', \App\Http\Controllers\Booking::class);
+    Route::get('booking/menu/{id}', [\App\Http\Controllers\Booking::class, 'addMenu'])->name('booking.menu');
+    Route::post('booking/menu/store', [\App\Http\Controllers\Booking::class, 'createMenu'])->name('booking.menu.store');
 
     // menu
     Route::resource('menu', \App\Http\Controllers\Menu::class);

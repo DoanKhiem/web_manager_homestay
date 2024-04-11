@@ -99,4 +99,45 @@ class Booking extends Controller
     {
         //
     }
+
+    public function addMenu(string $id)
+    {
+        $item = \App\Models\BookingDetail::findOrFail($id);
+        $menus = \App\Models\Menu::orderBy('created_at', 'desc')->get();
+        return view('booking.add-menu', compact('item', 'menus'));
+    }
+
+    public function createMenu(Request $request)
+    {
+//        dd($request->all());
+//        $this->validate($request, [
+//            'menu_id' => 'required',
+//            'quantity' => 'required',
+//            'price' => 'required',
+//        ]);
+
+        // Duyệt qua tất cả các checkbox trong request
+        foreach ($request->all() as $key => $value) {
+            // Nếu key bắt đầu bằng "checkbox-" và giá trị là "on"
+            if (str_starts_with($key, 'checkbox-') && $value == 'on') {
+                // Lấy id từ key
+                $id = str_replace('checkbox-', '', $key);
+
+                // Lấy giá trị của input tương ứng
+                $quantity = $request->input('quantity-' . $id);
+
+                $total = $request->input('total-' . $id);
+
+//                $status->rooms()->sync($request->room_id);
+                // Lưu dữ liệu
+                \App\Models\BookingDetailMenu::create([
+                    'booking_detail_id' => $request->booking_detail_id,
+                    'menu_id' => $id,
+                    'quantity' => $quantity,
+                    'total' => $total,
+                    // Thêm các trường khác nếu cần
+                ]);
+            }
+        }
+    }
 }
