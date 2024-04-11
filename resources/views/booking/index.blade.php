@@ -122,7 +122,7 @@
                                                     </button>
                                                     @endif
                                                 </td>
-                                                <td>{{$item->customer_pay}}</td>
+                                                <td>{{$item->total_amount}}</td>
                                                 <td>
                                                     <a href="{{route('booking.menu', $item->id)}}">
                                                         <button type="button" class="btn btn-primary btn-sm">

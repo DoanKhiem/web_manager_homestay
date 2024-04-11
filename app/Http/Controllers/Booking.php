@@ -109,13 +109,7 @@ class Booking extends Controller
 
     public function createMenu(Request $request)
     {
-//        dd($request->all());
-//        $this->validate($request, [
-//            'menu_id' => 'required',
-//            'quantity' => 'required',
-//            'price' => 'required',
-//        ]);
-
+        \App\Models\BookingDetailMenu::where('booking_detail_id', $request->booking_detail_id)->delete();
         // Duyệt qua tất cả các checkbox trong request
         foreach ($request->all() as $key => $value) {
             // Nếu key bắt đầu bằng "checkbox-" và giá trị là "on"
@@ -128,7 +122,6 @@ class Booking extends Controller
 
                 $total = $request->input('total-' . $id);
 
-//                $status->rooms()->sync($request->room_id);
                 // Lưu dữ liệu
                 \App\Models\BookingDetailMenu::create([
                     'booking_detail_id' => $request->booking_detail_id,
@@ -138,6 +131,16 @@ class Booking extends Controller
                     // Thêm các trường khác nếu cần
                 ]);
             }
+        }
+        $bookingDetail = \App\Models\BookingDetail::findOrFail($request->booking_detail_id);
+
+        $status = $bookingDetail->fill(['menu_price' => $request->total_menu])->save();
+        $booking = \App\Models\Booking::findOrFail($request->booking_id);
+        $status2 = $booking->fill(['total_amount' => $request->total])->save();
+        if ($status2 && $status) {
+            return redirect()->route('booking.index')->with('success', 'Thêm menu phòng thành công!');
+        } else {
+            return back()->with('error', 'Lỗi sửa menu phòng!');
         }
     }
 }
