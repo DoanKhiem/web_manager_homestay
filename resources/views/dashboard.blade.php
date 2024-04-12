@@ -76,7 +76,7 @@
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                         Library
                                     </li>
@@ -93,7 +93,52 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-cyan text-center">
+                                <h6 class="text-white">Số phòng</h6>
+                                <h1 class="font-light text-white">
+                                    {{$rooms->count()}}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-success text-center">
+                                <h6 class="text-white">Số tiện ích</h6>
+                                <h1 class="font-light text-white">
+                                    {{$utilities->count()}}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-warning text-center">
+                                <h6 class="text-white">Số menu</h6>
+                                <h1 class="font-light text-white">
+                                    {{$menus->count()}}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card card-hover">
+                            <div class="box bg-danger text-center">
+                                <h6 class="text-white">Doanh thu</h6>
+                                <h1 class="font-light text-white">
+                                    {{$totalAmount}}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

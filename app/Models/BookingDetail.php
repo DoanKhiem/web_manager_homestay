@@ -16,6 +16,7 @@ class BookingDetail extends Model
         'period_time',
         'total_time',
         'booking_price',
+        'menu_price',
         'adult',
         'kid',
     ];
@@ -27,6 +28,12 @@ class BookingDetail extends Model
 
     public function menus()
     {
-        return $this->belongsToMany(Menu::class, 'booking_detail_menu', 'booking_detail_id', 'menu_id');
+        return $this->belongsToMany(Menu::class, 'booking_detail_menu', 'booking_detail_id', 'menu_id')->withPivot('quantity', 'total');
+    }
+
+
+    public function booking()
+    {
+        return $this->hasOne(Booking::class);
     }
 }

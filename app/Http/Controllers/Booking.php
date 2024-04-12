@@ -89,7 +89,44 @@ class Booking extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = \App\Models\BookingDetail::findOrFail($id);
+        if($item) {
+            $this->validate($request, [
+                'customer_name' => 'required',
+                'phone_number' => 'required',
+                'room_id' => 'required',
+                'booking_category' => 'required',
+                'period_time' => 'required',
+                'adult' => 'required',
+                'kid' => 'required',
+                'total_time' => 'required',
+                'booking_price' => 'required',
+                'booking_status' => 'required',
+                'total_amount' => 'required',
+            ]);
+
+            $data = $request->except(['booking_status', 'total_amount', 'id']);
+            $status = $item->fill($data)->save();
+            if ($status) {
+                $item->rooms()->sync($request->room_id);
+                $booking = \App\Models\Booking::findOrFail($request->id);
+                $query = $booking->fill(['booking_detail_id' => $id,'booking_status' => $request->booking_status,'total_amount' => $request->total_amount])->save();
+//                $booking = \App\Models\Booking::updated([
+//                    'booking_detail_id' => $status->id,
+//                    'booking_status' => $request->booking_status,
+//                    'total_amount' => $request->total_amount,
+//                ]);
+                if ($query) {
+                    return redirect()->route('booking.index')->with('success', 'Đặt phòng thành công!');
+                }
+
+            } else {
+                return back()->with('error', 'Lỗi đặt phòng!');
+            }
+        } else {
+            return back()->with('error', 'Không tìm thấy đặt phòng cần sửa!');
+        }
+
     }
 
     /**
@@ -97,7 +134,17 @@ class Booking extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = \App\Models\Booking::findOrFail($id);
+        if ($item) {
+            $status = $item->delete();
+            if ($status) {
+                return redirect()->route('booking.index')->with('success', 'Xóa đặt phòng thành công!');
+            } else {
+                return back()->with('error', 'Lỗi xóa đặt phòng!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại đặt phòng này!');
+        }
     }
 
     public function addMenu(string $id)
@@ -109,13 +156,7 @@ class Booking extends Controller
 
     public function createMenu(Request $request)
     {
-//        dd($request->all());
-//        $this->validate($request, [
-//            'menu_id' => 'required',
-//            'quantity' => 'required',
-//            'price' => 'required',
-//        ]);
-
+        \App\Models\BookingDetailMenu::where('booking_detail_id', $request->booking_detail_id)->delete();
         // Duyệt qua tất cả các checkbox trong request
         foreach ($request->all() as $key => $value) {
             // Nếu key bắt đầu bằng "checkbox-" và giá trị là "on"
@@ -128,7 +169,6 @@ class Booking extends Controller
 
                 $total = $request->input('total-' . $id);
 
-//                $status->rooms()->sync($request->room_id);
                 // Lưu dữ liệu
                 \App\Models\BookingDetailMenu::create([
                     'booking_detail_id' => $request->booking_detail_id,
@@ -138,6 +178,16 @@ class Booking extends Controller
                     // Thêm các trường khác nếu cần
                 ]);
             }
+        }
+        $bookingDetail = \App\Models\BookingDetail::findOrFail($request->booking_detail_id);
+
+        $status = $bookingDetail->fill(['menu_price' => $request->total_menu])->save();
+        $booking = \App\Models\Booking::findOrFail($request->booking_id);
+        $status2 = $booking->fill(['total_amount' => $request->total])->save();
+        if ($status2 && $status) {
+            return redirect()->route('booking.index')->with('success', 'Thêm menu phòng thành công!');
+        } else {
+            return back()->with('error', 'Lỗi sửa menu phòng!');
         }
     }
 }

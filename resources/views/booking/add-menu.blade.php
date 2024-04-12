@@ -91,32 +91,44 @@
                             <div class="card-body">
                                 <h4 class="card-title">Danh sách menu đặt phòng</h4>
                                 <input name="booking_detail_id" value="{{$item->id}}" style="display: none">
+                                <input name="booking_id" value="{{$item->booking->id}}" style="display: none">
                                 @foreach($menus as $menu)
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-end control-label col-form-label">
-                                        <input type="checkbox" name="checkbox-{{$menu->id}}" class="checkbox checkbox-{{$menu->id}} form-check-input" style="margin-right: 10px"/>
+                                        <input type="checkbox" name="checkbox-{{$menu->id}}" class="checkbox checkbox-{{$menu->id}} form-check-input" style="margin-right: 10px"
+                                            {{ in_array($menu->id, $item->menus->pluck('id')->toArray()) ? 'checked' : '' }}/>
                                         {{$menu->name}} ({{$menu->price}} VNĐ)
                                     </label>
                                     <div class="col-sm-5">
                                         <input value="{{$menu->price}}" type="number" class="form-control price-{{$menu->id}}" style="display: none"/>
-                                        <input name="quantity-{{$menu->id}}" value="0" min="0" type="number" class="input form-control input-{{$menu->id}}"  placeholder="Nhập số lượng"/>
+                                        <input name="quantity-{{$menu->id}}" min="0" type="number" class="input form-control input-{{$menu->id}}"  placeholder="Nhập số lượng"
+                                               value="{{ $item->menus->where('id', $menu->id)->first() ? $item->menus->where('id', $menu->id)->first()->pivot->quantity : 0 }}"/>
                                     </div>
                                     <label for="fname" class="col-sm-2 text-end control-label col-form-label">
                                         Thành tiền:
                                     </label>
                                     <div class="col-sm-2">
-                                        <input name="total-{{$menu->id}}" style="display: none" value="0" type="number" class="form-control total-{{$menu->id}}"/>
-                                        <input  value="0" disabled type="number" class="form-control total-{{$menu->id}}"/>
+                                        <input name="total-{{$menu->id}}" style="display: none" value="{{ $item->menus->where('id', $menu->id)->first() ? $item->menus->where('id', $menu->id)->first()->pivot->quantity : 0 }}" type="number" class="form-control total-{{$menu->id}}"/>
+                                        <input  value="{{ $item->menus->where('id', $menu->id)->first() ? $item->menus->where('id', $menu->id)->first()->pivot->total : 0 }}" disabled type="number" class="form-control total-{{$menu->id}}"/>
                                     </div>
                                 </div>
                                 @endforeach
-
-                                <h2>Tổng tiền:</h2><input class="total">
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-4 control-label col-form-label">
+                                        <h5>Tổng tiền phòng:</h5><input name="total_booking_price" class="total_booking_price" value="{{$item->booking_price}}" disabled required>
+                                    </label>
+                                    <div class="col-sm-4 control-label col-form-label">
+                                        <h5>Tổng tiền menu:</h5><input name="total_menu" value="{{$item->menu_price}}" required class="total_menu">
+                                    </div>
+                                    <label for="fname" class="col-sm-4 control-label col-form-label">
+                                        <h5>Thành tiền:</h5><input name="total" value="{{$item->booking->total_amount}}" required class="total">
+                                    </label>
+                                </div>
                             </div>
                             <div class="border-top">
                                 <div class="card-body text-center">
                                     <button type="submit" class="btn btn-primary">
-                                        Đặt phòng
+                                        Thêm menu phòng
                                     </button>
                                 </div>
                             </div>
@@ -220,7 +232,8 @@
             });
 
             // Cập nhật tổng giá trị vào input total
-            $('.total').val(total);
+            $('.total_menu').val(total);
+            $('.total').val(total + parseInt($('.total_booking_price').val()));
         }
         // Khi checkbox thay đổi
         $('.checkbox').change(calculateTotal);
