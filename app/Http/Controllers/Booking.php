@@ -134,7 +134,17 @@ class Booking extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = \App\Models\Booking::findOrFail($id);
+        if ($item) {
+            $status = $item->delete();
+            if ($status) {
+                return redirect()->route('booking.index')->with('success', 'Xóa đặt phòng thành công!');
+            } else {
+                return back()->with('error', 'Lỗi xóa đặt phòng!');
+            }
+        } else {
+            return back()->with('error', 'Không tồn tại đặt phòng này!');
+        }
     }
 
     public function addMenu(string $id)

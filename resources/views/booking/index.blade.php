@@ -130,7 +130,7 @@
                                                         </button>
                                                     </a>
                                                     <a href="{{route('booking.edit', $item->id)}}">
-                                                        <button type="button" class="btn btn-warning btn-sm">
+                                                        <button type="button" class="btn btn-warning btn-sm mt-2">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
                                                     </a>
@@ -138,7 +138,7 @@
                                                           method="POST" class="d-inline">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="button" class="deleteBtn btn btn-danger btn-sm text-white">
+                                                        <button type="button" class="deleteBtn btn btn-danger btn-sm text-white mt-2">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </button>
                                                     </form>
