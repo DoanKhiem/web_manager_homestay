@@ -86,10 +86,11 @@
                         @endforeach
                         @endif
                         <div class="card">
-                            <form class="form-horizontal" action="{{route('booking.update', $item->id)}}" method="POST">
+                            <form class="form-horizontal" action="{{route('booking.update', $item->bookingDetail->id)}}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
+                                    <input name="id" value="{{$item->id}}" style="display: none">
                                     <h4 class="card-title">Thông tin đặt phòng</h4>
                                     <div class="form-group row">
                                         <label for="fname" class="col-sm-3 text-end control-label col-form-label">
@@ -183,6 +184,13 @@
                                         <div class="col-sm-7">
                                             <input name="booking_price" value="{{$item->bookingDetail->booking_price}}" type="number"
                                                 class="form-control" placeholder="Nhập tổng tiền phòng" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="cono1" class="col-sm-3 text-end control-label col-form-label">Số tiền menu</label>
+                                        <div class="col-sm-8">
+                                            <input name="menu_price" value="{{$item->bookingDetail->menu_price}}" type="number"
+                                                   class="form-control" disabled placeholder="" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -375,7 +383,7 @@
                     }
                 });
                 $('input[name="booking_price"]').val(total);
-                $('input[name="total_amount"]').val(total);
+                $('input[name="total_amount"]').val(total + parseInt($('input[name="menu_price"]').val()));
             });
         });
     </script>

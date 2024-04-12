@@ -89,7 +89,44 @@ class Booking extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = \App\Models\BookingDetail::findOrFail($id);
+        if($item) {
+            $this->validate($request, [
+                'customer_name' => 'required',
+                'phone_number' => 'required',
+                'room_id' => 'required',
+                'booking_category' => 'required',
+                'period_time' => 'required',
+                'adult' => 'required',
+                'kid' => 'required',
+                'total_time' => 'required',
+                'booking_price' => 'required',
+                'booking_status' => 'required',
+                'total_amount' => 'required',
+            ]);
+
+            $data = $request->except(['booking_status', 'total_amount', 'id']);
+            $status = $item->fill($data)->save();
+            if ($status) {
+                $item->rooms()->sync($request->room_id);
+                $booking = \App\Models\Booking::findOrFail($request->id);
+                $query = $booking->fill(['booking_detail_id' => $id,'booking_status' => $request->booking_status,'total_amount' => $request->total_amount])->save();
+//                $booking = \App\Models\Booking::updated([
+//                    'booking_detail_id' => $status->id,
+//                    'booking_status' => $request->booking_status,
+//                    'total_amount' => $request->total_amount,
+//                ]);
+                if ($query) {
+                    return redirect()->route('booking.index')->with('success', 'Đặt phòng thành công!');
+                }
+
+            } else {
+                return back()->with('error', 'Lỗi đặt phòng!');
+            }
+        } else {
+            return back()->with('error', 'Không tìm thấy đặt phòng cần sửa!');
+        }
+
     }
 
     /**
